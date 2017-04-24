@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+<div class="container offset-header">
+  <div class="row">
+    <div class="col-sm-8">
+
+      <div class="blog-header">
+        <h2 class="blog-title baseGreen">
+        <span class="icon">
+            <i class="fa fa-book"></i>
+          </span>
+          All Posts
+        </h2>
+        
+      </div>
+      <% @posts.each do |p| %>
+        <div class="primary">
+           <div class="card_post_wrapper">
+            <div class="card_post">
+              <div class="card_body">
+              <h2 class="card_title"><%= link_to p.title, post_path(p) %></h2>
+              <h5 class="small">(<%= p.category.name %>)</h5>
+              <hr>
+                <span class="small">
+                  <% if session[:user_id] %>
+                    <%= link_to ' Edit ', edit_post_path(p)  %>
+                    <%= link_to '| Delete', p, :confirm => 'Are you sure?', :method => :delete %>
+                  <% end -%>
+                </span>
+             
+                <p class="small"><%= p.created_at.strftime("%B %d, %Y")
+            %></p>
+                <%= markdown(p.body) %>
+
+                <% if session[:user_id] %>
+                  <%= link_to ' Edit ', edit_post_path(p)  %>
+                  <%= link_to '| Delete', p, :confirm => 'Are you sure?', :method => :delete %>
+                <% end -%>
+                <br />
+                <hr />
+            
+              </div>
+            </div>
+          </div>
+        </div> <!-- end primary div -->
+      <% end -%>
+    </div>
+ 
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+      <div class="secondary">
+        <!-- categories go here -->
+        <%= render "shared/categories" %>
+      </div>
+    </div>
+ </div>    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

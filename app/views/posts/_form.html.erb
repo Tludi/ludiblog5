@@ -1,0 +1,52 @@
+<div class="container offset-header">
+
+<%= form_for(@post) do |f| %>
+
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, :size => "50" %>
+    <span class="actions center"><%= f.submit %></span>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body, :size => "100x20" %>
+  </div>
+  <div class="field">
+    <%= f.label :feature_text %><br>
+    <%= f.text_area :featuretext, :size => "100x10" %>
+  </div>
+  <div class="field">
+    <%= f.label :font_icon %><br>
+    <%= f.text_field :fonticon %>
+  </div>
+  <div class="field">
+    <%= f.label :post_image %><br>
+    <%= f.text_field :postimageurl %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <%= f.select(:category_id, Category.all.collect {|c|
+         [c.name, c.id]} , {:prompt => "select (nothing yet)"}) %>
+         <%= link_to 'Add Category', new_category_path %>
+  </div>
+  <div class="field">
+    <%= f.label :Private_post %><br />
+    <%= f.check_box :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
