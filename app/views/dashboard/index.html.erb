@@ -8,3 +8,127 @@
     </div><!--//row-->
   </div><!--//container-->
 </section><!--//promo-->
+
+
+
+<!-- ****** Featured Posts ****** --> 
+<section id="features" class="features section">
+  <div class="container">
+    <div class="row">
+      <% @categories.limit(4).order('created_at ASC').each do |c| %>
+        <h2 class="title text-center sr-only">Features</h2>
+        <div class="item col-md-3 col-sm-6 col-xs-12 text-center">
+
+          <div class="icon feature_icon">
+            <i class="fa fa-<%= c.fonticon %>"></i>                
+          </div><!--//icon-->
+          <br>
+          <div class="content feature_border card_post">
+            <h1 class="title"><%= link_to c.name %></h1>
+            <hr>
+            <div class="text-left">
+              <% c.posts.limit(4).order('updated_at DESC').each do |p| %>
+
+                <p>
+                  <!-- <span class="fa-stack fa"> -->
+                    <!-- <i class="fa fa-circle fa-stack-2x"></i> -->
+                    <i class="fa fa-<%= c.fonticon %> blue">  </i>
+                  <!-- </span> -->
+                  <%= link_to p.title, post_path(p) %>
+                </p>
+
+              <% end -%>
+            </div>
+            <button class="modal-trigger btn btn-link" data-toggle="modal" data-target="#feature-modal-1"><%= link_to "More", posts_path %></button>
+          </div><!--//content-->               
+        </div><!--//item-->
+
+      <% end -%>
+    </div><!--//row-->
+  </div><!--//container-->
+</section><!--//features-->
+
+
+<section class="promo has-pattern">
+  <div class="container">
+    <div class="row">
+      <!-- <div class="overview col-md-12 col-sm-12 col-xs-12"> -->
+        <h2 class="recent_title text-center">Recent Posts</h2>        
+      <!-- </div><!--//overview-->
+    </div><!--//row-->
+  </div><!--//container-->
+</section><!--//promo-->
+
+<!-- ******Recent Posts****** --> 
+    <section id="recent" class="recent section">
+        <div class="container">
+            <div class="row">
+
+                <div class="faq-col col-md-6 col-sm-6 col-xs-12">
+                  <% @oddPosts.each do |op| %>
+                    <div class="item card_body">
+                        <h3 class="question card_title">
+
+                          <span class="fa-stack fa">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-<%= op.category.fonticon %> fa-stack-1x fa-inverse"></i>
+                          </span>
+
+                          <span class="small pull-right">
+                            <%= op.updated_at.strftime("%B %d, %Y") %>
+                          </span>
+                          <%= link_to op.title, post_path(op), class: "title"%>
+                        </h3>
+
+                        <% if op.body.length <= 1000 %>
+                          <span class="answer"><%= markdown(op.body) %></span>
+                        <% else %>
+                          <span class="answer"><%= markdown(op.featuretext) %></span>
+                        <% end %>
+                        <button class="modal-trigger btn btn-link" data-toggle="modal" data-target="#feature-modal-1"><%= link_to "Read more", post_path(op) %></button>
+                    </div><!--//item-->
+                  <% end -%>
+                </div><!--//faq-col-->
+
+                <div class="faq-col col-md-6 col-sm-6 col-xs-12">
+                  <% @evenPosts.each do |ep| %>
+                    
+                    <div class="item card_body">
+                      <h3 class="question card_title">
+                        <span class="fa-stack fa">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-<%= ep.category.fonticon %> fa-stack-1x fa-inverse"></i>
+                        </span>
+                        
+                        <%= link_to ep.title, post_path(ep), class: "title"%>
+                        <span class="small pull-right">
+                          <%= ep.updated_at.strftime("%B %d, %Y") %>
+                        </span>
+                      </h3>
+
+                      <% if ep.body.length <= 1000 %>
+                        <span class="answer"><%= markdown(ep.body) %></span>
+                      <% else %>
+                        <span class="answer"><%= markdown(ep.featuretext) %></span>
+                      <% end %>
+                      <button class="modal-trigger btn btn-link" data-toggle="modal" data-target="#feature-modal-1"><%= link_to "Read more", post_path(ep) %></button>
+                    </div><!--//item-->
+                  <% end -%>
+                </div><!--//recent-col-->
+            </div><!--//row-->
+
+        </div><!--//container-->
+    </section><!--//recent posts-->
+            <section class="promo has-pattern">
+              <div class="container">
+                <div class="row">
+                  <!-- <div class="overview col-md-12 col-sm-12 col-xs-12"> -->
+                    <h3 class=" text-center"><%= link_to "All Posts", posts_path %></h3>        
+                  <!-- </div><!--//overview-->
+                </div><!--//row-->
+              </div><!--//container-->
+            </section><!--//promo-->
+         <!--    <div class="more text-center">
+                <h4 class="title"><%= link_to "All Posts", posts_path %></h4>
+                <a class="btn btn-lg btn-theme scrollto" href="#contact">Get in touch<i class="fa fa-arrow-circle-o-down"></i></a>
+            </div> -->
