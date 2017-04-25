@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # uncomment to create a new User
-  before_action :check_if_logged_in #, except: [:new, :create]
+  before_action :check_if_logged_in, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -31,10 +31,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_path, notice: 'User was successfully created.' }
+        format.html { redirect_to login, notice: 'User was successfully created.' }
         # format.json { render :show, status: :created, location: @user }
       else
-        format.html { redirect_to root_path, notice: 'oops.' }
+        format.html { redirect_to signup, notice: 'oops.' }
         # format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
