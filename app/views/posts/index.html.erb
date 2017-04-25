@@ -17,7 +17,12 @@
            <div class="card_post_wrapper">
             <div class="card_post">
               <div class="card_body">
-              <h2 class="card_title"><%= link_to p.title, post_path(p) %></h2>
+              <h2 class="card_title"><%= link_to p.title, post_path(p) %>
+               <% if p.private == true  %>
+                  <span id="small"> (Private Post)</span>
+                <% end -%>
+              </h2>
+              <p class="small"><%= p.updated_at.strftime("%B %d, %Y") %></p>
               <h5 class="small">(<%= p.category.name %>)</h5>
               <hr>
                 <span class="small">

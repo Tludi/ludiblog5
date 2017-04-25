@@ -1,52 +1,39 @@
-<div class="container offset-header">
+<div class="container offset-header center">
+<p id="notice"><%= notice %></p>
+<div class="primary min-page-height">
+  <div class="card_post_wrapper_login">
+   <div class="card_post">
+<%= simple_form_for(@post) do |f| %>
 
-<%= form_for(@post) do |f| %>
+    <% if @post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+        <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title, :size => "50" %>
-    <span class="actions center"><%= f.submit %></span>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body, :size => "100x20" %>
-  </div>
-  <div class="field">
-    <%= f.label :feature_text %><br>
-    <%= f.text_area :featuretext, :size => "100x10" %>
-  </div>
-  <div class="field">
-    <%= f.label :font_icon %><br>
-    <%= f.text_field :fonticon %>
-  </div>
-  <div class="field">
-    <%= f.label :post_image %><br>
-    <%= f.text_field :postimageurl %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.select(:category_id, Category.all.collect {|c|
-         [c.name, c.id]} , {:prompt => "select (nothing yet)"}) %>
-         <%= link_to 'Add Category', new_category_path %>
-  </div>
-  <div class="field">
-    <%= f.label :Private_post %><br />
-    <%= f.check_box :status %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.input :title, label: "Post Title" %>
+    <%= f.input :body %>
+    <%= f.input :featuretext, label: "Feature Text" %>
+    <%= f.input :fonticon, label: "Font Icon" %>
+    <%= f.input :postimageurl, label: "Post Image Url" %>
+    <%= f.association :category, collection: @categories %>
+    <%= f.input :private, label: "Private", as: :boolean  %>
+    <%= f.input :featured, label: "Featured" %>
+    <%= f.input :publish, label: "Published" %>
+
+
+    <%= f.submit 'Enter', class: "btn btn-primary" %>
+
+
 <% end %>
+   </div>
+  </div>
+</div>
 </div>

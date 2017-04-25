@@ -5,7 +5,7 @@
     <%= link_to 'Log Out', logout_path %>
     <br>
     <%= link_to 'New Post', new_post_path %></p>
-    <%= link_to 'Private Posts', "#" %>
+    <%= link_to 'Private Posts (Not working)', "#" %></br>
   <% end -%>
   <% if @current_public_post %>
     <%= link_to "Latest_post", post_path(@current_public_post) %></br>
