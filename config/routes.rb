@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'dash2/index', as: :dash2
 
-  root to: "dashboard#index"
+  root to: "dash2#index"
   get 'dashboard/index'
 
   resources :categories
