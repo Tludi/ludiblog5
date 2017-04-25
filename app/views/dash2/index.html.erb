@@ -1,4 +1,14 @@
 <p id="notice"><%= notice %></p>
+<section id="promo" class="promo section home-offset-header has-pattern">
+  <div class="container">
+    <div class="row">
+      <div class="overview col-md-12 col-sm-12 col-xs-12">
+        <%= image_tag "blogfeature2clear.png", :width => 1080, :height => 280, :class => "img-responsive center-block" %>        
+      </div><!--//overview-->                                           
+    </div><!--//row-->
+  </div><!--//container-->
+</section><!--//promo-->
+
 <section id="feature" class="feature section">
 <div class="container offset-header min-page-height">
   <div class="row">
@@ -6,7 +16,7 @@
 
       <div class="blog-header">
         <h2 class="blog-title baseGreen">
-          Ponder This:
+          <%= @latestPost.title %>
         </h2>
         <!-- <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p> -->
       </div>
@@ -15,7 +25,7 @@
         <div class="post card_post_wrapper">
           <div class="card_post">
             <div class="card_body">
-              <h3 class="card_title"><%= @latestPost.title %>
+              <h3 class="card_title"><%= @latestPost.featuretext %>
                 <% unless @latestPost.status == 0  %>
                   <span id="small"> (Private Post)</span>
                 <% end -%>
@@ -130,17 +140,13 @@
         </div><!--//container-->
 
 
-    </section><!--//recent posts-->
-            <section class="promo has-pattern">
-              <div class="container">
-                <div class="row">
-                  <!-- <div class="overview col-md-12 col-sm-12 col-xs-12"> -->
-                    <h3 class=" text-center"></h3>        
-                  <!-- </div><!--//overview-->
-                </div><!--//row-->
-              </div><!--//container-->
-            </section><!--//promo-->
-         <!--    <div class="more text-center">
-                <h4 class="title"><%= link_to "All Posts", posts_path %></h4>
-                <a class="btn btn-lg btn-theme scrollto" href="#contact">Get in touch<i class="fa fa-arrow-circle-o-down"></i></a>
-            </div> -->
+      </section><!--//recent posts-->
+      <section class="promo has-pattern">
+        <div class="container">
+          <div class="row">
+            <!-- <div class="overview col-md-12 col-sm-12 col-xs-12"> -->
+              <h3 class=" text-center"><%= link_to "All Posts", posts_path %></h3>        
+            <!-- </div><!--//overview-->
+          </div><!--//row-->
+        </div><!--//container-->
+      </section><!--//promo-->
