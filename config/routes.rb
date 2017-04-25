@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'dash2/index', as: :dash2
+
   root to: "dashboard#index"
   get 'dashboard/index'
 

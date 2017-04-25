@@ -1,0 +1,146 @@
+<p id="notice"><%= notice %></p>
+<section id="feature" class="feature section">
+<div class="container offset-header min-page-height">
+  <div class="row">
+    <div class="col-sm-8">
+
+      <div class="blog-header">
+        <h2 class="blog-title baseGreen">
+          Ponder This:
+        </h2>
+        <!-- <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p> -->
+      </div>
+
+      <div class="primary">
+        <div class="post card_post_wrapper">
+          <div class="card_post">
+            <div class="card_body">
+              <h3 class="card_title"><%= @latestPost.title %>
+                <% unless @latestPost.status == 0  %>
+                  <span id="small"> (Private Post)</span>
+                <% end -%>
+              </h3>
+              <p class="small"><%= @latestPost.updated_at.strftime("%B %d, %Y") %></p>
+              <span class="small">
+                <% if session[:user_id] %>
+                  <%= link_to ' Edit ', edit_post_path(@latestPost)  %>
+                  <%= link_to '| Delete', @latestPost, :confirm => 'Are you sure?', :method => :delete %>
+                <% end -%>
+              </span>
+              <hr>
+         
+              <%= markdown(@latestPost.body) %>
+
+              <br />
+              <hr />
+              <span class="small">
+                <% if session[:user_id] %>
+                  <%= link_to ' Edit ', edit_post_path(@latestPost)  %>
+                  <%= link_to '| Delete', @latestPost, :confirm => 'Are you sure?', :method => :delete %>
+                <% end -%>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- link_to "Previous Posts", archives_path %> -->
+      </div> <!-- end primary div -->
+
+    </div> <!-- end col-8 div -->
+
+ 
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+      <div class="secondary">
+        <%= render "shared/categories" %>
+      </div>
+    </div>
+
+  </div>  <!-- end row div -->
+  
+</div> <!-- end container div -->
+</section>
+
+<section class="promo has-pattern">
+  <div class="container">
+    <div class="row">
+      <!-- <div class="overview col-md-12 col-sm-12 col-xs-12"> -->
+        <h2 class="recent_title text-center">Recent Posts</h2>        
+      <!-- </div><!--//overview-->
+    </div><!--//row-->
+  </div><!--//container-->
+</section><!--//promo-->
+
+<!-- ******Recent Posts****** --> 
+    <section id="recent" class="recent section">
+        <div class="container">
+            <div class="row">
+
+                <div class="faq-col col-md-6 col-sm-6 col-xs-12">
+                  <% @oddPosts.each do |op| %>
+                    <div class="item card_body">
+                        <h3 class="question card_title">
+
+                          <span class="fa-stack fa">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-<%= op.category.fonticon %> fa-stack-1x fa-inverse"></i>
+                          </span>
+
+                          <span class="small pull-right">
+                            <%= op.updated_at.strftime("%B %d, %Y") %>
+                          </span>
+                          <%= link_to op.title, post_path(op), class: "title"%>
+                        </h3>
+
+                        <% if op.body.length <= 1000 %>
+                          <span class="answer"><%= markdown(op.body) %></span>
+                        <% else %>
+                          <span class="answer"><%= markdown(op.featuretext) %></span>
+                        <% end %>
+                        <button class="modal-trigger btn btn-link" data-toggle="modal" data-target="#feature-modal-1"><%= link_to "Read more", post_path(op) %></button>
+                    </div><!--//item-->
+                  <% end -%>
+                </div><!--//faq-col-->
+
+                <div class="faq-col col-md-6 col-sm-6 col-xs-12">
+                  <% @evenPosts.each do |ep| %>
+                    
+                    <div class="item card_body">
+                      <h3 class="question card_title">
+                        <span class="fa-stack fa">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-<%= ep.category.fonticon %> fa-stack-1x fa-inverse"></i>
+                        </span>
+                        
+                        <%= link_to ep.title, post_path(ep), class: "title"%>
+                        <span class="small pull-right">
+                          <%= ep.updated_at.strftime("%B %d, %Y") %>
+                        </span>
+                      </h3>
+
+                      <% if ep.body.length <= 1000 %>
+                        <span class="answer"><%= markdown(ep.body) %></span>
+                      <% else %>
+                        <span class="answer"><%= markdown(ep.featuretext) %></span>
+                      <% end %>
+                      <button class="modal-trigger btn btn-link" data-toggle="modal" data-target="#feature-modal-1"><%= link_to "Read more", post_path(ep) %></button>
+                    </div><!--//item-->
+                  <% end -%>
+                </div><!--//recent-col-->
+            </div><!--//row-->
+
+        </div><!--//container-->
+
+
+    </section><!--//recent posts-->
+            <section class="promo has-pattern">
+              <div class="container">
+                <div class="row">
+                  <!-- <div class="overview col-md-12 col-sm-12 col-xs-12"> -->
+                    <h3 class=" text-center"></h3>        
+                  <!-- </div><!--//overview-->
+                </div><!--//row-->
+              </div><!--//container-->
+            </section><!--//promo-->
+         <!--    <div class="more text-center">
+                <h4 class="title"><%= link_to "All Posts", posts_path %></h4>
+                <a class="btn btn-lg btn-theme scrollto" href="#contact">Get in touch<i class="fa fa-arrow-circle-o-down"></i></a>
+            </div> -->
