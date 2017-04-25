@@ -1,10 +1,22 @@
 class CategoriesController < ApplicationController
-  before_filter :check_if_logged_in
+  before_action :check_if_logged_in, except: [:index]
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :set_categories
   # GET /categories
   # GET /categories.json
   def index
+    @home = true
+    @categories = Category.all
+    @posts = Post.all.limit(4)
+    @allPosts = Post.order(:updated_at => :desc)
+    @evenPosts = @allPosts.where("id % 2 = 0").limit(5)
+    @oddPosts = @allPosts.where("id % 2 != 0").limit(5)
+    @latestPost = Post.last
+
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    end
+
   end
 
   # GET /categories/1

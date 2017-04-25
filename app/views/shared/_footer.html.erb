@@ -3,7 +3,25 @@
       <div class="footer">
         <div class="content">
 
-          <p><%= link_to image_tag("logo.png", width: "70", class: "logo"), "http://www.diligentagility.com" %> <span class="ftext"> <span class="dagreen">diligent</span><span class="dablue">agility</span><small class="copyright"> - timludi - Copyright &copy; 2010 - 2015</small></span></p>
+          <p><%= link_to image_tag("logo.png", width: "70", class: "logo"), "http://www.diligentagility.com" %> 
+            <span class="ftext"> 
+              <span class="dagreen">diligent</span><span class="dablue">agility</span>
+              <small class="copyright"> - timludi - Copyright &copy; 2010 - 2017</small>
+          
+            
+              <% if logged_in? %>
+                <span class="nav-item right"><%= link_to "Logout", logout_path %> </span>
+              <% else %>
+                <span class="right">
+                <%= link_to login_path do %>
+                  <i class="fa fa-sign-in"></i>
+                <% end %>
+                 </span>
+              <% end %>
+            </span>
+          </p>
+
+
 
         </div>
       </div>

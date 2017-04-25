@@ -45,6 +45,10 @@ a {
   color: #5981FD;
 }
 
+.right {
+  float: right;
+}
+
 .clear {
   clear: both;
   height: 0;
@@ -81,6 +85,7 @@ a {
 
 .center {
   text-align: center;
+  margin: auto;
 }
 
 
@@ -285,6 +290,12 @@ p#notice {
   color:#aaa;
 }
 
+.card_post_wrapper_login{
+  /*background:#777;*/
+  /*padding:10px;*/
+  max-width: 400px;
+  margin: auto;
+}
 
 .card_post_wrapper{
   /*background:#777;*/
@@ -296,7 +307,8 @@ p#notice {
   background:#fff;
   /*background-color: #FBF4E1;*/
   /*border: solid 1px #ddd;*/
-  /*margin:10px;*/
+  /*margin:auto;*/
+  margin-top: 50px;
   margin-bottom: 25px;
   padding:20px;
   box-shadow: 6px 6px 20px #ccc;

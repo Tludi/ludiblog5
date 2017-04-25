@@ -1,20 +1,20 @@
-<div class="container offset-header">
+<div class="container offset-header center">
 <p id="notice"><%= notice %></p>
-<div class="primary">
-   <div class="card_post_wrapper">
-   <div class="card_post center">
+<div class="primary min-page-height">
+  <div class="card_post_wrapper_login">
+   <div class="card_post">
     <% title "Log in" %>
 
     <%= form_tag sessions_path do %>
       <p>
-        <%= label_tag :login, "Username or Email Address" %><br />
+        <%= label_tag :login, "Name" %><br />
         <%= text_field_tag :login, params[:login] %>
       </p>
       <p>
         <%= label_tag :password %><br />
         <%= password_field_tag :password %>
       </p>
-      <p><%= submit_tag "Log in" %></p>
+      <p><%= submit_tag "Log in", class: "btn btn-primary" %></p>
     <% end %>
     </div>
   </div>
