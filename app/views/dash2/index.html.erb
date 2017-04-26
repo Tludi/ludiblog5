@@ -26,7 +26,7 @@
           <div class="card_post">
             <div class="card_body">
               <h3 class="card_title"><%= @latestPost.featuretext %>
-                <% unless @latestPost.status == 0  %>
+                <% unless @latestPost.status == false  %>
                   <span id="small"> (Private Post)</span>
                 <% end -%>
               </h3>
