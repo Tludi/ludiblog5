@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(version: 20170425213926) do
     t.text     "featuretext"
     t.integer  "category_id"
     t.integer  "user_id"
-    t.boolean  "status"
+    t.boolean  "status",       default: false
     t.string   "fonticon"
     t.string   "postimageurl"
-    t.boolean  "featured"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.boolean  "private"
-    t.boolean  "publish"
+    t.boolean  "featured",     default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "private",      default: false
+    t.boolean  "publish",      default: false
   end
 
   create_table "users", force: :cascade do |t|

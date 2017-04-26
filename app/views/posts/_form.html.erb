@@ -24,12 +24,12 @@
     <%= f.input :fonticon, label: "Font Icon" %>
     <%= f.input :postimageurl, label: "Post Image Url" %>
     <%= f.association :category, collection: @categories %>
-    <%= f.input :private, label: "Private", as: :boolean  %>
+    <%= f.input :private  %>
     <%= f.input :featured, label: "Featured" %>
     <%= f.input :publish, label: "Published" %>
 
 
-    <%= f.submit 'Enter', class: "btn btn-primary" %>
+    <%= f.submit %>
 
 
 <% end %>
