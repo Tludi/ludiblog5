@@ -6,10 +6,11 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.text :featuretext
       t.integer :category_id
       t.integer :user_id
-      t.integer :status
       t.string :fonticon
       t.string :postimageurl
       t.integer :featured
+      t.boolean :private, default: false
+      t.boolean :publish, default: false
 
       t.timestamps null: false
     end
