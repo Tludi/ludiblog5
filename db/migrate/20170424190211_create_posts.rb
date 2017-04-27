@@ -8,7 +8,8 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.string :fonticon
       t.string :postimageurl
-      t.integer :featured
+      t.boolean :status, default: false
+      t.boolean :featured, default: false
       t.boolean :private, default: false
       t.boolean :publish, default: false
 
